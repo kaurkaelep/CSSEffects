@@ -1,0 +1,272 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 5rem auto;
+  max-width: 1140px;
+}
+
+h3 {
+  font-family: "Gilroy";
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+button {
+  border: none;
+  background: none;
+  font-family: "Gilroy";
+  font-weight: 500;
+  font-size: 1rem;
+  color: #000;
+  width: 150px;
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.hover-wrapper,
+.click-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* --- HOVER EFFECTS --- */
+
+.hover-wrapper {
+  // HOVER BUTTON 1
+  .hover-button-1 {
+    width: 150px;
+    border: 1px solid #000;
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    transition: 0.75s all ease;
+    .button-text {
+      color: #fff;
+      font-weight: 600;
+      mix-blend-mode: difference; // THIS. ALSO: MAKES TEXT LOOK JAGGED???
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      height: 100%;
+      width: 0px;
+      background: #000;
+      transition: 0.75s all ease;
+      z-index: -1;
+    }
+    &:hover {
+      &:before {
+        width: 100%;
+        transition: 0.75s all ease;
+      }
+    }
+  }
+
+  // HOVER BUTTON 2
+  .hover-button-2 {
+    &:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      bottom: 0;
+      left: 0;
+      background-color: #000;
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.75s;
+    }
+    &:hover {
+      &:before {
+        transform-origin: bottom left;
+        transform: scaleX(1);
+      }
+    }
+  }
+  // HOVER BUTTON 3
+  .hover-button-3 {
+    img {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      width: 30px;
+      height: 30px;
+      transition: 0.5s all ease;
+    }
+    .button-text {
+      transition: 0.5s all ease;
+      opacity: 1;
+    }
+    &:hover {
+      transition: 0.5s all ease;
+      img {
+        transition: 0.5s all ease;
+        transform: translateX(-50%) scale(1);
+      }
+      .button-text {
+        opacity: 0;
+        transition: 0.5s all ease;
+        transform: scale(0);
+      }
+    }
+  }
+  // HOVER BUTTON 4
+  .hover-button-4 {
+    border: 1px solid #000;
+    overflow: hidden;
+    span {
+      transition: 0.25s all ease-out;
+      opacity: 1;
+    }
+    &:before {
+      content: attr(data-hover);
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) translateX(-200%);
+      color: #000;
+      font-family: "Gilroy";
+      font-weight: 600;
+      transition: 0.25s all ease-out;
+    }
+    &:hover {
+      span {
+        opacity: 0;
+        transition: 0.25s all ease-in-out;
+        transform: translateX(200%);
+      }
+      &:before {
+        transition: 0.25s all ease-in-out;
+        transform: translateY(-50%) translateX(275%);
+      }
+    }
+  }
+  // HOVER BUTTON 5
+  .hover-button-5 {
+    border: 1px solid #000;
+    overflow: hidden;
+    span {
+      transition: 0.25s all ease-out;
+      opacity: 1;
+    }
+    img {
+      left: 50%;
+      position: absolute;
+      transition: 0.25s all ease-out;
+      transform: translate(-50%, 150%);
+      opacity: 0;
+    }
+    &:hover {
+      span {
+        opacity: 0;
+        transform: 0.25s all ease-in-out;
+        transform: translateY(-250%);
+      }
+      img {
+        transform: 0.25s all ease-in-out;
+        opacity: 1;
+        transform: translate(-50%, 0%);
+      }
+    }
+  }
+  // HOVER BUTTON 6
+  .hover-button-6 {
+    border: 1px solid #000;
+    overflow: hidden;
+    img {
+      position: absolute;
+      left: 50%;
+      opacity: 0;
+      transform: scale(0) translate(-50%, 30px);
+      transition: 0.5s all ease;
+    }
+    span {
+      opacity: 1;
+      transition: 0.5s all ease;
+    }
+    &:hover {
+      span {
+        opacity: 0;
+        transition: 0.5s all ease;
+        transform: scale(0) translateY(-30px);
+      }
+      img {
+        opacity: 1;
+        transition: 0.5s all ease;
+        transform: scale(1) translate(-50%, 0);
+      }
+    }
+  }
+  // HOVER BUTTON 7
+  .hover-button-7 {
+    border: 1px solid #000;
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: url("./arrow-right.svg") no-repeat center;
+      background-size: 100% 100%;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0, 1),
+        opacity 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    }
+    &:after {
+      opacity: 0;
+      transform: scale(0) translateX(-40px);
+    }
+    &:hover {
+      &:before {
+        opacity: 0;
+        transform: scale(0) translateX(40px);
+      }
+      &:after {
+        opacity: 1;
+        transform: scale(1) translateX(0);
+      }
+    }
+  }
+}
+
+/* --- CLICK EFFECTS --- */
+
+.click-wrapper {
+  .click-button-1 {
+    overflow: hidden;
+    background-position: center;
+    transition: background 0.8s;
+    &:active, &:focus {
+        outline: none;
+    }
+    &:active {
+      background-color: #eaeaea;
+      background-size: 100%;
+      transition: background 0s;
+    }
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(50);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(50);
+    opacity: 0;
+  }
+}
