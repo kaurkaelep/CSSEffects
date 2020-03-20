@@ -34,7 +34,8 @@ button {
 }
 
 .hover-wrapper,
-.click-wrapper {
+.click-wrapper,
+.hover-click-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -243,12 +244,14 @@ button {
 /* --- CLICK EFFECTS --- */
 
 .click-wrapper {
+  // CLICK BUTTON 1
   .click-button-1 {
     overflow: hidden;
     background-position: center;
     transition: background 0.8s;
-    &:active, &:focus {
-        outline: none;
+    &:active,
+    &:focus {
+      outline: none;
     }
     &:active {
       background-color: #eaeaea;
@@ -256,17 +259,153 @@ button {
       transition: background 0s;
     }
   }
+  // CLICK BUTTON 2
+  .click-button-2 {
+    border: 1px solid #000;
+    &:focus {
+      animation: pulse 0.25s linear;
+    }
+  }
+  // CLICK BUTTON 3
+  .click-button-3 {
+    border: 1px solid #000;
+    background: #fff;
+    span {
+      position: absolute;
+      transform: scale(0);
+      background: #000;
+      color: #FFF;
+      padding: 0.25rem 1rem;
+      border-radius: 15px;
+      transition: 0.25s all ease;
+      z-index: -1;
+    }
+    &:focus {
+      outline: none;
+      span {
+        transition: 0.25s all ease;
+        transform: scale(1) translateY(200%);
+      }
+    }
+  }
+  // CLICK BUTTON 4
+  .click-button-4 {
+    overflow: hidden;
+    border: 1px solid #000;
+    span {
+      transition: 0.25s cubic-bezier(0.32, 1.32, 0.32, 1.32);
+    }
+    img {
+      position: absolute;
+      transform: translateY(-200%);
+      transition: 0.5s cubic-bezier(0.32, 1.32, 0.32, 1.32);
+    }
+    &:focus {
+      span {
+        transition: 0.25s cubic-bezier(0.32, 1.32, 0.32, 1.32);
+        transform: translateY(-200%);
+      }
+      img {
+        transition: 0.5s cubic-bezier(0.32, 1.32, 0.32, 1.32);
+        transform: translateY(0);
+      }
+    }
+  }
+  // CLICK BUTTON 5
+  .click-button-5 {
+    overflow: hidden;
+    border: 1px solid #000;
+    span {
+      transition: 0.25s cubic-bezier(0.32, 1.32, 0.32, 1.32);
+    }
+    img {
+      position: absolute;
+      transform: translateY(-200%);
+      transition: 0.5s cubic-bezier(0.32, 1.32, 0.32, 1.32);
+    }
+    &:focus {
+      span {
+        transition: 0.25s cubic-bezier(0.32, 1.32, 0.32, 1.32);
+        transform: translateY(-200%);
+      }
+      img.spinner {
+        animation: 1.5s spinnerBounce forwards;
+      }
+      img.check {
+        animation: 1.5s checkAppear forwards;
+      }
+    }
+  }
 }
 
-@keyframes ripple {
-  0% {
-    transform: translate(-50%, -50%);
+.hover-click-wrapper {
+  // HOVER & CLICK BUTTON 1
+  .hoverclick-button-1 {
+    &:before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0px;
+      height: 2px;
+      bottom: 0px;
+      background: #000;
+      transition: 0.25s all ease;
+    }
+    &:hover {
+      &:before {
+        transition: 0.25s all ease;
+        width: 100%;
+      }
+      &:active {
+        &:before {
+          width: 70%;
+        }
+      }
+    }
+    &:focus {
+      outline: none;
+    }
   }
-  80% {
-    transform: translate(-50%, -50%) scale(50);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
   }
   100% {
-    transform: translate(-50%, -50%) scale(50);
-    opacity: 0;
+    box-shadow: 0 0 0 15px rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes pulse-inner {
+  0% {
+    box-shadow: inset 0 0 0 35px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: inset 0 0 0 0px rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes spinnerBounce {
+  0% {
+    transform: translateY(-200%);
+  }
+  25%,
+  75% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+@keyframes checkAppear {
+  0%,
+  75% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }

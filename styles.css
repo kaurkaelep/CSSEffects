@@ -30,7 +30,8 @@ button:hover {
   cursor: pointer;
 }
 .hover-wrapper,
-.click-wrapper {
+.click-wrapper,
+.hover-click-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -221,15 +222,130 @@ button:hover {
   background-size: 100%;
   transition: background 0s;
 }
-@keyframes ripple {
+.click-wrapper .click-button-2 {
+  border: 1px solid #000;
+}
+.click-wrapper .click-button-2:focus {
+  animation: pulse 0.25s linear;
+}
+.click-wrapper .click-button-3 {
+  border: 1px solid #000;
+  background: #fff;
+}
+.click-wrapper .click-button-3 span {
+  position: absolute;
+  transform: scale(0);
+  background: #000;
+  color: #FFF;
+  padding: 0.25rem 1rem;
+  border-radius: 15px;
+  transition: 0.25s all ease;
+  z-index: -1;
+}
+.click-wrapper .click-button-3:focus {
+  outline: none;
+}
+.click-wrapper .click-button-3:focus span {
+  transition: 0.25s all ease;
+  transform: scale(1) translateY(200%);
+}
+.click-wrapper .click-button-4 {
+  overflow: hidden;
+  border: 1px solid #000;
+}
+.click-wrapper .click-button-4 span {
+  transition: 0.25s cubic-bezier(0.32, 1.32, 0.32, 1.32);
+}
+.click-wrapper .click-button-4 img {
+  position: absolute;
+  transform: translateY(-200%);
+  transition: 0.5s cubic-bezier(0.32, 1.32, 0.32, 1.32);
+}
+.click-wrapper .click-button-4:focus span {
+  transition: 0.25s cubic-bezier(0.32, 1.32, 0.32, 1.32);
+  transform: translateY(-200%);
+}
+.click-wrapper .click-button-4:focus img {
+  transition: 0.5s cubic-bezier(0.32, 1.32, 0.32, 1.32);
+  transform: translateY(0);
+}
+.click-wrapper .click-button-5 {
+  overflow: hidden;
+  border: 1px solid #000;
+}
+.click-wrapper .click-button-5 span {
+  transition: 0.25s cubic-bezier(0.32, 1.32, 0.32, 1.32);
+}
+.click-wrapper .click-button-5 img {
+  position: absolute;
+  transform: translateY(-200%);
+  transition: 0.5s cubic-bezier(0.32, 1.32, 0.32, 1.32);
+}
+.click-wrapper .click-button-5:focus span {
+  transition: 0.25s cubic-bezier(0.32, 1.32, 0.32, 1.32);
+  transform: translateY(-200%);
+}
+.click-wrapper .click-button-5:focus img.spinner {
+  animation: 1.5s spinnerBounce forwards;
+}
+.click-wrapper .click-button-5:focus img.check {
+  animation: 1.5s checkAppear forwards;
+}
+.hover-click-wrapper .hoverclick-button-1:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0px;
+  height: 2px;
+  bottom: 0px;
+  background: #000;
+  transition: 0.25s all ease;
+}
+.hover-click-wrapper .hoverclick-button-1:hover:before {
+  transition: 0.25s all ease;
+  width: 100%;
+}
+.hover-click-wrapper .hoverclick-button-1:hover:active:before {
+  width: 70%;
+}
+.hover-click-wrapper .hoverclick-button-1:focus {
+  outline: none;
+}
+@keyframes pulse {
   0% {
-    transform: translate(-50%, -50%);
-  }
-  80% {
-    transform: translate(-50%, -50%) scale(50);
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
   }
   100% {
-    transform: translate(-50%, -50%) scale(50);
-    opacity: 0;
+    box-shadow: 0 0 0 15px rgba(0, 0, 0, 0);
+  }
+}
+@keyframes pulse-inner {
+  0% {
+    box-shadow: inset 0 0 0 35px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: inset 0 0 0 0px rgba(0, 0, 0, 0);
+  }
+}
+@keyframes spinnerBounce {
+  0% {
+    transform: translateY(-200%);
+  }
+  25%,
+  75% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+@keyframes checkAppear {
+  0%,
+  75% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
